@@ -34,6 +34,57 @@ helm uninstall airflow
  
  helm install minikubetest ./mychart 
  
+ helm create mychart
+helm create mycharttemp
+
+rm -rf mychart/templates/*
+
+
+
+configmap.yaml
+~~~~~~~~~~~~~
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mychart-configmap
+data:
+  myvalue: "Sample Config Map"
+  
+  
+  
+helm install helm-demo-configmap ./mychart
+
+helm ls
+
+kubectl get all
+
+
+helm get manifest helm-demo-configmap
+
+kubectl describe configmaps mychart-configmap
+
+
+helm unins	tall helm-demo-configmap
+
+ mychart/values.yaml
+ 
+ 
+ costCode: CC98112
+ 
+ 
+ costCode: {{ .Values.costCode }}
+ 
+ helm install --debug --dry-run firstdryrun ./mychart
+ 
+ 
+ helm install firstvalue ./mychart
+ 
+ 
+ helm get manifest firstvalue
+ 
+kubectl describe configmaps firstvalue-configmap
+ 
  kubectl get all
  
  helm list
